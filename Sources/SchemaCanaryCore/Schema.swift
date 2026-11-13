@@ -85,7 +85,7 @@ public enum SchemaComparator {
             throw SchemaCanaryError.unsupportedFormat(current.formatVersion)
         }
 
-        let oldEntities = try index(baseline.entities, name: \.name)
+        _ = try index(baseline.entities, name: \.name)
         let newEntities = try index(current.entities, name: \.name)
         var changes: [SchemaChange] = []
 
