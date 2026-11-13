@@ -1,0 +1,28 @@
+{
+  "formatVersion": 1,
+  "entities": [
+    {
+      "name": "Invoice",
+      "properties": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "optional": false,
+          "hasDefaultValue": true,
+          "unique": true,
+          "relationshipDestination": null,
+          "toMany": null
+        },
+        {
+          "name": "memo",
+          "type": "String",
+          "optional": true,
+          "hasDefaultValue": false,
+          "unique": false,
+          "relationshipDestination": null,
+          "toMany": null
+        }
+      ]
+    }
+  ]
+}
