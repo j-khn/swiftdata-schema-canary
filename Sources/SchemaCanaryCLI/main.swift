@@ -12,7 +12,7 @@ struct SchemaCanaryCommand {
     static func main() {
         let paths = Array(CommandLine.arguments.dropFirst())
         guard paths.count == 2 else {
-            fputs("Usage: schema-canary BASELINE.json CURRENT.json\n", stderr)
+            FileHandle.standardError.write(Data("Usage: schema-canary BASELINE.json CURRENT.json\n".utf8))
             exit(1)
         }
 
@@ -38,7 +38,7 @@ struct SchemaCanaryCommand {
                 exit(2)
             }
         } catch {
-            fputs("schema-canary: \(error)\n", stderr)
+            FileHandle.standardError.write(Data("schema-canary: \(error)\n".utf8))
             exit(1)
         }
     }
