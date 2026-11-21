@@ -85,4 +85,18 @@ final class SchemaComparatorTests: XCTestCase {
         XCTAssertEqual(changes.count, 1)
         XCTAssertEqual(changes.first?.severity, .informational)
     }
+
+    func testNewEntityIsInformational() throws {
+        let before = SchemaSnapshot(formatVersion: 1, entities: [])
+        let after = SchemaSnapshot(
+            formatVersion: 1,
+            entities: [SchemaEntity(name: "Invoice", properties: [
+                property("id", type: "UUID", optional: false)
+            ])]
+        )
+        let changes = try SchemaComparator.compare(baseline: before, current: after)
+        XCTAssertEqual(changes.count, 1)
+        XCTAssertEqual(changes.first?.path, "Invoice")
+        XCTAssertEqual(changes.first?.severity, .informational)
+    }
 }

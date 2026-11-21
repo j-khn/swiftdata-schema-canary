@@ -48,7 +48,7 @@ A snapshot records entities and properties, including type, optionality, default
 - Relationship destination or cardinality changes.
 - New uniqueness constraints that may conflict with existing data.
 
-Optional additions and required additions with a declared default are informational.
+New entities, optional properties, and required properties with a declared default are informational.
 
 ## Important limits
 

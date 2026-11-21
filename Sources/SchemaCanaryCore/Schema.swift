@@ -85,7 +85,7 @@ public enum SchemaComparator {
             throw SchemaCanaryError.unsupportedFormat(current.formatVersion)
         }
 
-        _ = try index(baseline.entities, name: \.name)
+        let oldEntities = try index(baseline.entities, name: \.name)
         let newEntities = try index(current.entities, name: \.name)
         var changes: [SchemaChange] = []
 
@@ -132,6 +132,10 @@ public enum SchemaComparator {
                     changes.append(change(.informational, "\(newEntity.name).\(property.name)", "Property was added with a default or as optional."))
                 }
             }
+        }
+
+        for newEntity in current.entities where oldEntities[newEntity.name] == nil {
+            changes.append(change(.informational, newEntity.name, "Entity was added."))
         }
 
         return changes.sorted {
